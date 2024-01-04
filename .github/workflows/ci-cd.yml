@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          python -m pytest
+          if [ $? -ne 0 ]; then
+            echo "Tests failed. Exiting with a non-zero status code."
+            exit 1
+          fi
 
       - name: Run tests
         run: |
